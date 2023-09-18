@@ -1,7 +1,7 @@
 <template>
-  <Login/>
-  <h1>Here is the main page</h1>
+  <Login />
 </template>
 
 <script>
+  import Login from "./components/Login.vue"
 </script>
