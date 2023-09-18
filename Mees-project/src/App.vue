@@ -1,3 +1,3 @@
 <template>
-  <h1>Here is the main page</h1>
+  <h1>try</h1>
 </template>
