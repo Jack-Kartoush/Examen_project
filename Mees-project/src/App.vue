@@ -1,6 +1,7 @@
 <template>
+ <img src="./assets/img/banner.png" alt="Banner Image" class="banner">
 <header>
-  <img src="./assets/img/banner.png" alt="Banner Image" class="banner">
+ 
     <Navbar/>
 </header>
   <BroodSection/>
