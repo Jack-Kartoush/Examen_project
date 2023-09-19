@@ -1,5 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,1000&family=Roboto:wght@300&display=swap");
+.NavBar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  padding: 10px;
+  background: #000;
+  height: 70px;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  padding: 10px;
+}
+
+.menu li {
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.menu-btn {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.banner {
+  width: 100%;
+  height: 350px;
+}
+
+section {
+  height: 100vh;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+.login-btn {
+  background-color: #E73823;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */
