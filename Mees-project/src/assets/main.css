@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,1000&family=Roboto:wght@300&display=swap");
 .NavBar {
+  margin-top: -5px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: #fff;
   padding: 10px;
-  background: #000;
+  background-color: chocolate;
   height: 70px;
   z-index: 1;
   position: sticky;
