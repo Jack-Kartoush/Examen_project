@@ -1,11 +1,12 @@
 <template>
-    <form action="" @submit.prevent="signInWithEmail()">
-        <label for="email">Email</label>
-  <br />
-  <input type="text" v-model="email" id="email" />
-  <button @click="signInWithEmail">login</button>
-    </form>
-  
+    <div class="login-container">
+        <form action="" @submit.prevent="signInWithEmail()">
+            <label for="email">Email</label>
+        <br />
+        <input type="text" v-model="email" id="email" />
+        <button @click="signInWithEmail">login</button>
+        </form>
+    </div>
   
     <ul>
       <li v-for="admin in Admin_Users" :key="admin.admin_id">{{ admin.admin_namefirst }}</li>

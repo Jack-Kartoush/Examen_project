@@ -1,22 +1,24 @@
 
 <template>
-  <form  @submit.prevent="handleLogin">
-    <div >
-      <h1>Supabase + Vue 3</h1>
-      <p>Sign in via magic link with your email below</p>
-      <div>
-        <input  required type="email" placeholder="Your email" v-model="email" />
+  <div class="login-container">
+    <form  @submit.prevent="handleLogin">
+      <div >
+        <h1>Supabase + Vue 3</h1>
+        <p>Sign in via magic link with your email below</p>
+        <div>
+          <input  required type="email" placeholder="Your email" v-model="email" />
+        </div>
+        <div>
+          <input
+            type="submit"
+            class="button block"
+            :value="loading ? 'Loading' : 'Send magic link'"
+            :disabled="loading"
+          />
+        </div>
       </div>
-      <div>
-        <input
-          type="submit"
-          class="button block"
-          :value="loading ? 'Loading' : 'Send magic link'"
-          :disabled="loading"
-        />
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 <script setup>
 import { ref } from 'vue'
