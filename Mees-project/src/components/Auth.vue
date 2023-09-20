@@ -18,14 +18,51 @@
         </div>
       </div>
     </form>
+
+
+    <ul v-for="admin in Admin_Users " :key="admin">
+      <li >{{ admin.admin_namefirst }} </li>
+      <li >{{ admin.admin_email }} </li>
+    </ul>
+
+
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref, toRefs } from 'vue'
 import { supabase } from '../supabase'
 
 const loading = ref(false)
 const email = ref('')
+const Admin_Users = ref()
+
+onMounted(() => {
+  FetchData()
+})
+async function FetchData() {
+ 
+  let { data, error} = await supabase
+  .from('Admin_Users')
+  .select()
+  
+
+  
+  if(error) {
+    alert('Failed fetch')
+    console.log(error)
+  }
+  if (data){
+    Admin_Users.value = data
+    console.log("admin value",Admin_Users.value)
+  }
+ if(email.value != Admin_Users.value.admin_email){
+  alert("werkt ")
+ }else{
+  alert("niet werkt")
+  return;
+ }
+      
+}
 
 const handleLogin = async () => {
   try {
@@ -43,4 +80,5 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
+
 </script>
