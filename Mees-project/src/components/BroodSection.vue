@@ -3,16 +3,20 @@
     section 1
 </section>
 
-<section class="Vlees-Broodjes" id="VleesBroodjes" >
+<section class="Warme-Broodjes" id="WarmeBroodjes" >
     section 2
 </section>
 
-<section class="Kip-Broodjes" id="KipBroodjes" >
+<section class="Gezonde-Broodjes" id="GezondeBroodjes" >
     section 3
 </section>
 
-<section class="Vis-Broodjes" id="VisBroodjes" >
+<section class="Soep" id="Soep" >
     section 4
+</section>
+
+<section class="Drankjes" id="Drankjes" >
+    section 5
 </section>
 
 </template>
