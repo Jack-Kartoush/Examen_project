@@ -15,7 +15,7 @@ import Login from './components/Login.vue'
 import Account from './components/Account.vue'
 import Auth from './components/Auth.vue'
 import { supabase } from './supabase'
-import HomePage from './components/HomePage.vue'
+
 
 const session = ref()
 
