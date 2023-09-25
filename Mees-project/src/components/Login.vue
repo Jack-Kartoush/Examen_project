@@ -1,16 +1,14 @@
 <template>
     <div class="login-container">
-        <form action="" @submit.prevent="signInWithEmail()">
+        <h1>Login pagina</h1>
+        <form action="" @submit.prevent="">
             <label for="email">Email</label>
         <br />
         <input type="text" v-model="email" id="email" />
-        <button @click="signInWithEmail">login</button>
+        <button @click="Validator()">login</button>
         </form>
     </div>
   
-    <ul>
-      <li v-for="admin in Admin_Users" :key="admin.admin_id">{{ admin.admin_namefirst }}</li>
-    </ul>
 </template>
 
 <script setup>
@@ -21,12 +19,35 @@ const Admin_Users = ref([])
 const email = ref("")
 
 onMounted(() => {
-    Validator()
+    
 })
+
 async function Validator() {
-    const { validator, err } = await supabase.from('Admin_Users').select("*")
-    Admin_Users.value = validator
-    // console.log(Admin_Users.value)
+ //let count = ref()
+
+ let { data, error} = await supabase
+ .from('Admin_Users')
+ .select()
+ 
+ if(error) {
+   alert('Failed fetch')
+   console.log(error)
+ }
+
+ if (data){
+    Admin_Users.value = data
+    const Checked_Email = Admin_Users.value.filter((e) => e.admin_email == email.value).map((e) => { return {email: e.admin_email}});
+    //console.log("Email check: ",Checked_Email)
+    if(!Checked_Email[0]){
+        //alert("false")
+        return
+    }
+    if(Checked_Email[0].email == email.value){
+        //alert("passed")
+        signInWithEmail()
+    }
+ }
+     
 }
 
 async function signInWithEmail() {

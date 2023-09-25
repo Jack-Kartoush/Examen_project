@@ -55,12 +55,6 @@ async function FetchData() {
     Admin_Users.value = data
     console.log("admin value",Admin_Users.value)
   }
- if(email.value != Admin_Users.value.admin_email){
-  alert("werkt ")
- }else{
-  alert("niet werkt")
-  return;
- }
       
 }
 
