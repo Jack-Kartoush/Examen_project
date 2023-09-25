@@ -1,18 +1,14 @@
 <template>
-<section class="Vega-Broodjes" id="VegaBroodjes" >
+<section class="Broodjes" id="Broodjes" >
     section 1
 </section>
 
-<section class="Warme-Broodjes" id="WarmeBroodjes" >
+<section class="Snacks" id="Snacks" >
     section 2
 </section>
 
-<section class="Gezonde-Broodjes" id="GezondeBroodjes" >
-    section 3
-</section>
-
 <section class="Soep" id="Soep" >
-    section 4
+    section 3
 </section>
 
 <section class="Drankjes" id="Drankjes" >
