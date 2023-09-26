@@ -33,6 +33,10 @@
   cursor: pointer;
 }
 
+span .bar {
+  font-size: 40px;
+}
+
 .bar {
   display: block;
   width: 30px;
@@ -191,6 +195,9 @@ h2 {
   }
   .close-btn {
     display: none;
+  }
+  .active {
+    color: #0000FF;
   }
   .menu {
     position: fixed;

@@ -31,9 +31,8 @@
 .hamburger{
     display: none;
     cursor: pointer;
-   
-    
 }
+
 .bar{
     display: block;
     width: 30px;
@@ -202,7 +201,7 @@ h2{
     }
 
     .active{
-
+        color: #0000FF;
     }
     .menu{
         position: fixed;
