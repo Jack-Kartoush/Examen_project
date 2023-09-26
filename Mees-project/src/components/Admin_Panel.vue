@@ -4,7 +4,7 @@
   <form action="">
     <p>Voeg admins toe</p>
   </form>
-  <button v-if="!add" @click="add = true">Voeg een product +</button>
+  <button v-if="!addProd" @click="addProd = true">Voeg een product +</button>
   <div class="prod-form" v-else>
     <label for="name">Product name</label>
     <input type="text" id="name" v-model="prodName" />
@@ -13,11 +13,22 @@
   <ul
     v-for="product in Products"
     :key="product"
+    :id="product.prod_id"
     style="display: flex; justify-content: space-around"
   >
-    <li>{{ product.prod_name }}</li>
-    <li>{{ product.prod_price }}</li>
-    <button @click="editProduct(product)">Bewerken</button>
+    <li>{{ product.prod_name }}</li> 
+    
+    <button v-if="!editProd" @click="editProduct(product)">
+      Bewerken
+    </button>
+    <div class="edit-form" v-else>
+
+      <label for="ProdName">Product name</label>
+      <input type="text" v-model="product.prodname" />
+
+      
+      <button type="submit" @click="saveProduct(product)">save</button>
+    </div>
     <button @click="delProduct(product)">verwijderen</button>
   </ul>
 
@@ -34,9 +45,15 @@ const props = defineProps(["session"]);
 const { session } = toRefs(props);
 
 const loading = ref(true);
-const add = ref(false);
+const addProd = ref(false);
+const editProd = ref(false);
 const Products = ref([]);
 const prodName = ref("");
+
+const editProdName = ref("");
+const editProdPrice = ref();
+
+
 // const username = ref('')
 // const website = ref('')
 // const avatar_url = ref('')
@@ -44,6 +61,7 @@ const prodName = ref("");
 onMounted(() => {
   //getProfile()
   getAllProducts();
+  
 });
 
 async function getAllProducts() {
@@ -58,18 +76,28 @@ async function getAllProducts() {
     Products.value = data;
   }
 }
-
-async function editProduct(product) {
+function editProduct(product ){
+  const elementID = document.getElementById(product.prod_id);
+  console.log("product id", elementID);
+  
+}
+async function saveProduct(product) {
   let id = ref(product.prod_id);
   console.log(id.value);
+  const { error } = await supabase
+    .from("Products")
+    .update({ prod_name: product.prodname})
+    .eq("prod_id", id.value);
+
+  getAllProducts();
 }
 async function delProduct(product) {
   let id = ref(product.prod_id);
   console.log(id.value);
   const { error } = await supabase
-  .from('Products')
-  .delete()
-  .eq("prod_id", id.value)
+    .from("Products")
+    .delete()
+    .eq("prod_id", id.value);
   getAllProducts();
 }
 
@@ -78,32 +106,11 @@ async function createProduct() {
     prod_name: prodName.value,
   });
   getAllProducts();
-  add.value = false;
+  addProd.value = false;
   prodName.value = null;
 }
 
-async function updateProduct() {
-  try {
-    loading.value = true;
-    const { user } = session.value;
 
-    const updates = {
-      id: user.id,
-      username: username.value,
-      website: website.value,
-      avatar_url: avatar_url.value,
-      updated_at: new Date(),
-    };
-
-    let { error } = await supabase.from("profiles").upsert(updates);
-
-    if (error) throw error;
-  } catch (error) {
-    alert(error.message);
-  } finally {
-    loading.value = false;
-  }
-}
 
 async function signOut() {
   try {
