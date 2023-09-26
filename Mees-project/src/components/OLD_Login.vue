@@ -23,7 +23,6 @@ onMounted(() => {
 })
 
 async function Validator() {
- //let count = ref()
 
  let { data, error} = await supabase
  .from('Admin_Users')
