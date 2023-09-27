@@ -1,7 +1,14 @@
 <template>
   <Slideshow />
   <section class="BroodContainer" id="VegaBroodjes">
-    <h1 class="title">Vega Broodjes</h1>
+    <!-- <div class="prod_title">
+          <span>Vega broodje</span>
+          <span>3.99</span>
+        </div> -->
+        <div class="title_container">
+          <h1 class="title">Vega Broodjes</h1>
+        </div>
+ 
     <div class="prod_container">
       <div class="prod_wraper">
         <img src="../assets/img/broodje.jpg" alt="Nature" class="responsive" />

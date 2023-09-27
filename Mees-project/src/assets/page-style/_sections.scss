@@ -3,12 +3,20 @@
 .BroodContainer{
     display: block;
     padding: 10px;
+    
 }
 
+.title_container{
+    display: flex;
+    justify-content: center;
+}
 .title{
-    text-align: center;
     color: #fff;
     background-color: #000;
+    width: 200px;
+    padding: 10px;
+
+    
 }
 .prod_container{
     display: flex;
