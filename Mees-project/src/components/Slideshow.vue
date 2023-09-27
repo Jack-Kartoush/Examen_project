@@ -1,4 +1,5 @@
 <template>
+
   <div class="container">
     <div class="slider">
       <input type="radio" class="radio" name="images" id="radio-1" checked />
