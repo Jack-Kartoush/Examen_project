@@ -1,2 +1,45 @@
 
- 
+
+.BroodContainer{
+    display: block;
+    padding: 10px;
+}
+
+.title{
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+}
+.prod_container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    
+}
+
+.prod_wraper{
+    display: flex;
+    flex-direction: column;
+    width: 40vmin;
+    font-size: medium;
+    margin: 1.6rem;
+}
+
+.text{
+    font-size: 13px;
+    margin-top:10px;
+}
+
+.prod_title{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 700; 
+    margin-top:10px;
+}
+@media only screen and (max-width: 600px)  {
+    .prod_wraper{
+        width: 100%;
+    }
+}
