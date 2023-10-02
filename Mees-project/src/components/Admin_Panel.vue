@@ -1,3 +1,4 @@
+<!-- Dit werkt -->
 <template>
   <p>Dit is het admin paneel</p>
 
