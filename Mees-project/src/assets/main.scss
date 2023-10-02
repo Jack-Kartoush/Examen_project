@@ -9,13 +9,13 @@
     scroll-behavior:smooth;
     scroll-padding-top: 100px;
     font-family: 'Ubuntu', sans-serif;
+
 }
+
 header{
-    width: 100%;
     overflow: auto;
     position: sticky;
     top: 0;
-    z-index: 2;
 }
 .login-btn {
     background-color: #E73823;
