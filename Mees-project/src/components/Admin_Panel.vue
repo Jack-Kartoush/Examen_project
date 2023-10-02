@@ -46,16 +46,9 @@ const loading = ref(true);
 const addProd = ref(false);
 const Products = ref([]);
 const prodName = ref("");
-
 const editProdName = ref("");
 
-
-// const username = ref('')
-// const website = ref('')
-// const avatar_url = ref('')
-
 onMounted(() => {
-  //getProfile()
   getAllProducts();
 });
 
@@ -71,25 +64,6 @@ async function getAllProducts() {
     Products.value = data;
   }
 }
-async function saveProduct(product) {
-  const id = ref(product.prod_id);
-  console.log("id ",id.value);
-  console.log("product.editProdName  ", product.prod_name );
-  console.log("editProdName  ", editProdName.value );
-  const { error } = await supabase
-    .from("Products")
-    .update({ prod_name: editProdName.value})
-    .eq("prod_id", id.value);
-
-  getAllProducts();
-  editProdName.value = null
-}
-async function delProduct(product) {
-  let id = ref(product.prod_id);
-  console.log(id.value);
-  const { error } = await supabase.from("Products").delete().eq("prod_id", id.value);
-  getAllProducts();
-}
 
 async function createProduct() {
   const { error } = await supabase.from("Products").insert({
@@ -98,6 +72,31 @@ async function createProduct() {
   getAllProducts();
   addProd.value = false;
   prodName.value = null;
+}
+
+async function saveProduct(product) {
+  const id = ref(product.prod_id);
+  // console.log("id ",id.value);
+  // console.log("product.editProdName  ", product.prod_name );
+  // console.log("editProdName  ", editProdName.value );
+  if (!editProdName.value){
+    return
+  } else {
+    const { error } = await supabase
+    .from("Products")
+    .update({ prod_name: editProdName.value})
+    .eq("prod_id", id.value);
+
+    getAllProducts();
+    editProdName.value = null
+  }
+}
+
+async function delProduct(product) {
+  let id = ref(product.prod_id);
+  // console.log(id.value);
+  const { error } = await supabase.from("Products").delete().eq("prod_id", id.value);
+  getAllProducts();
 }
 
 async function signOut() {
@@ -111,29 +110,4 @@ async function signOut() {
     loading.value = false;
   }
 }
-
-// async function getProfile() {
-//   try {
-//     loading.value = true
-//     const { user } = session.value
-
-//     let { data, error, status } = await supabase
-//       .from('profiles')
-//       .select(`username, website, avatar_url`)
-//       .eq('id', user.id)
-//       .single()
-
-//     if (error && status !== 406) throw error
-
-//     if (data) {
-//       username.value = data.username
-//       website.value = data.website
-//       avatar_url.value = data.avatar_url
-//     }
-//   } catch (error) {
-//     alert(error.message)
-//   } finally {
-//     loading.value = false
-//   }
-// }
 </script>
