@@ -218,6 +218,7 @@ h2 {
   width: 40vmin;
   font-size: medium;
   margin: 1.6rem;
+  background-color: rgb(242, 0, 255);
 }
 
 .text {
@@ -287,6 +288,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: -1;
 }
 
 .dots label {

@@ -4,6 +4,7 @@
     display: block;
     padding: 10px;
     
+    
 }
 
 .title_container{
@@ -24,6 +25,7 @@
     width: 100%;
     flex-wrap: wrap;
     
+    
 }
 
 .prod_wraper{
@@ -32,6 +34,7 @@
     width: 40vmin;
     font-size: medium;
     margin: 1.6rem;
+    background-color: rgb(242, 0, 255);
 }
 
 .text{
@@ -45,6 +48,7 @@
     font-size: 1.2rem;
     font-weight: 700; 
     margin-top:10px;
+
 }
 @media only screen and (max-width: 600px)  {
     .prod_wraper{
