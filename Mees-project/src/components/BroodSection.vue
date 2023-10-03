@@ -1,6 +1,6 @@
 <template>
   <Slideshow />
-  <section class="BroodContainer" id="VegaBroodjes">
+  <section class="BroodContainer" id="Broodjes">
     <!-- <div class="prod_title">
             <span>Vega broodje</span>
             <span>3.99</span>
