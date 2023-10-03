@@ -6,7 +6,7 @@
             <span>3.99</span>
           </div> -->
     <div class="title_container">
-      <h1 class="title">Vega Broodjes</h1>
+      <h1 class="title">Broodjes</h1>
     </div>
 
     <div class="prod_container">
