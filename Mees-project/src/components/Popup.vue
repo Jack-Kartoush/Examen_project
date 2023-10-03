@@ -89,12 +89,12 @@
 </template>
 <script setup>
 import { supabase } from "../supabase";
-import { onMounted, ref, toRefs } from "vue";
+import {ref, toRefs, defineProps, defineEmits } from "vue";
 const props = defineProps([ "Products"]);
 const { Products } = toRefs(props);
 const isOpen = ref(true);
 const prodName = ref("")
-
+const emit = defineEmits(["Products", "getProducts"]);
 
 async function createProduct() {
   const { error } = await supabase.from("Products").insert({
@@ -103,6 +103,7 @@ async function createProduct() {
   console.log("prodName.value", prodName.value);
  
   prodName.value = null;
+  emit("getProducts", "Products")
   isOpen.value = true;
   //verwijzing naar Admin_Panel.vue voor refresh producten lijst. zodat alle nieuwe producten meteen na creatie zichtbaar zijn in de lijst.
 }

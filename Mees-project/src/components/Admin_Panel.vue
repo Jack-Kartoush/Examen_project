@@ -11,7 +11,7 @@
     <input type="text" id="name" v-model="prodName" />
     <!-- <button type="submit" @click="createProduct()">add</button> -->
   </div>
-  <Popup :products="Products" />
+  <Popup :products="Products" @getProducts="getAllProducts()"/>
   <ul>
     <li
       style="display: flex; justify-content: space-around; padding: 20px"
