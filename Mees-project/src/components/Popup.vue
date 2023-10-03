@@ -17,8 +17,6 @@
     aria-hidden="true"
     class="bg-wraper fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex items-center justify-center"
     :class="{ open: isOpen }"
-  
-  
   >
     <div class="relative w-full max-w-2xl max-h-full">
       <!-- Modal content -->
@@ -67,7 +65,6 @@
           class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600"
         >
           <button
-           
             type="submit"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             @click="createProduct()"
@@ -89,11 +86,11 @@
 </template>
 <script setup>
 import { supabase } from "../supabase";
-import {ref, toRefs, defineProps, defineEmits } from "vue";
-const props = defineProps([ "Products"]);
+import { ref, toRefs, defineProps, defineEmits } from "vue";
+const props = defineProps(["Products"]);
 const { Products } = toRefs(props);
 const isOpen = ref(true);
-const prodName = ref("")
+const prodName = ref("");
 const emit = defineEmits(["Products", "getProducts"]);
 
 async function createProduct() {
@@ -101,9 +98,9 @@ async function createProduct() {
     prod_name: prodName.value,
   });
   console.log("prodName.value", prodName.value);
- 
+
   prodName.value = null;
-  emit("getProducts", "Products")
+  emit("getProducts", "Products");
   isOpen.value = true;
   //verwijzing naar Admin_Panel.vue voor refresh producten lijst. zodat alle nieuwe producten meteen na creatie zichtbaar zijn in de lijst.
 }
