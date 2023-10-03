@@ -11,7 +11,7 @@
     <input type="text" id="name" v-model="prodName" />
     <button type="submit" @click="createProduct()">add</button>
   </div>
-  <EditProd_popup/>
+  <Popup/>
   <ul>
     <li
       style="display: flex; justify-content: space-around; padding: 20px"
@@ -39,7 +39,7 @@
 <script setup>
 import { supabase } from "../supabase";
 import { onMounted, ref, toRefs } from "vue";
-import EditProd_popup from "./EditProd_popup.vue";
+import Popup from "./Popup.vue";
 
 const props = defineProps(["session"]);
 const { session } = toRefs(props);
