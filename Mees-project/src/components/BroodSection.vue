@@ -18,7 +18,7 @@
         </div>
         <p class="text">
           Als we het hebben over een goed alternatief voor een hamburger, dan
-          denken wij gelijk aan de vegetarische variant van oesterzwammen. Je
+          denken wij gelijk  variant van oesterzwammen. Je
           maakt ze in een handomdraai en ze zijn écht net zo lekker als een
           vleesburger! In dit recept brengen we de burgers op smaak met een
           heerlijk frisse, zelfgemaakte dragonmayonaise.
