@@ -8,13 +8,15 @@
 
    
 <header>
- 
+
     <Navbar/>
 </header>
+  <Auth v-if="!LoginScreen"/>
   <BroodSection/>
 </template>
 <script setup>
 import Navbar from './components/Navbar.vue'
+import Auth from './components/Auth.vue'
 import BroodSection from './components/BroodSection.vue';
 
 </script>
