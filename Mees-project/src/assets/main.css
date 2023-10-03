@@ -218,12 +218,13 @@ h2 {
   width: 40vmin;
   font-size: medium;
   margin: 1.6rem;
-  background-color: rgb(242, 0, 255);
+  background-color: rgba(242, 0, 255, 0.496);
 }
 
 .text {
   font-size: 13px;
   margin-top: 10px;
+  padding: 5px;
 }
 
 .prod_title {
@@ -232,6 +233,7 @@ h2 {
   font-size: 1.2rem;
   font-weight: 700;
   margin-top: 10px;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 600px) {
