@@ -9,9 +9,9 @@
   <div class="prod-form" v-else>
     <label for="name">Product name</label>
     <input type="text" id="name" v-model="prodName" />
-    <button type="submit" @click="createProduct()">add</button>
+    <!-- <button type="submit" @click="createProduct()">add</button> -->
   </div>
-  <Popup/>
+  <Popup :products="Products" />
   <ul>
     <li
       style="display: flex; justify-content: space-around; padding: 20px"
