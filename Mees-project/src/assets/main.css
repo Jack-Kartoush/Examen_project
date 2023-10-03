@@ -39,7 +39,6 @@
   width: 30px;
   height: 3px;
   margin: 5px auto;
-  -webkit-animation: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   background-color: chocolate;
 }
@@ -267,6 +266,7 @@ h2 {
   left: 0;
   opacity: 0;
   animation-duration: 1s;
+  z-index: -1;
 }
 
 .slide img {
