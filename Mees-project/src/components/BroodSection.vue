@@ -58,5 +58,7 @@
   </section>
 </template>
 <script setup>
+import { onMounted, ref, toRef } from 'vue'
+import { supabase } from '../supabase'
 import Slideshow from "./Slideshow.vue";
 </script>
