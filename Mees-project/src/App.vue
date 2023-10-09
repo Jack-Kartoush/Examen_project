@@ -11,14 +11,15 @@
 
     <Navbar/>
 </header>
-  <Auth v-if="!isLoginScreen"/><!-- Dit moet gekoppeld worden aan de navbar -->
-  <BroodSection/>
+  <Auth v-if="isLoginScreen"/><!-- Dit moet gekoppeld worden aan de navbar -->
+  <BroodSection v-else/>
 </template>
 <script setup>
+import { onMounted, ref, toRef } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Auth from './components/Auth.vue'
 import BroodSection from './components/BroodSection.vue';
 
-const loginProps = defineProps(["isLoginScreen"]);
-const { isLoginScreen } = toRefs(loginProps);
+let isLoginScreen = ref(false);
+window.gblIsLoginScreen = isLoginScreen;
 </script>

@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref, toRef } from 'vue'
 const isActive = ref(false);
-const isLoginScreen = ref(false);
+let isLoginScreen = window.gblIsLoginScreen;
 </script>
