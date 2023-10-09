@@ -25,18 +25,11 @@
       <button v-if="!product.index" @click="product.index = !product.index">Bewerken</button>
       <div class="edit-form" v-else>
         <label for="ProdName">Product name</label>
-        <input type="text" :value="product.prod_name"/>
-        <label for="prodCat">Product Cat</label>
-        <input type="number" min="1" max="4" :value="product.prod_cat_id"/>
-        <label for="prodDesc">Product Desc</label>
-        <input type="text" :value="product.prod_desc"/>
-        
-        <!-- <label for="ProdName">Product name</label>
         <input type="text" v-model="editProdName"/>
         <label for="prodCat">Product Cat</label>
         <input type="number" min="1" max="4" v-model="editProdCat"/>
         <label for="prodDesc">Product Desc</label>
-        <input type="text" v-model="editProdDesc"/> -->
+        <input type="text" v-model="editProdDesc"/>
 
         <button type="submit" @click="saveProduct(product)">save</button>
       </div>
