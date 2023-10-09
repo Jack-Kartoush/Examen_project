@@ -7,7 +7,7 @@
     type="button"
     @click="isOpen = false"
   >
-    Toggle modal
+    Voeg een product +
   </button>
 
   <!-- Main modal -->

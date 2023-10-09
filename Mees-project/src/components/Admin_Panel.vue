@@ -5,12 +5,7 @@
   <form action="">
     <p>Voeg admins toe</p>
   </form>
-  <button v-if="!addProd" @click="addProd = true">Voeg een product +</button>
-  <div class="prod-form" v-else>
-    <label for="name">Product name</label>
-    <input type="text" id="name" v-model="prodName" />
-    <!-- <button type="submit" @click="createProduct()">add</button> -->
-  </div>
+  <br/>
   <Popup :products="Products" @getProducts="getAllProducts()"/>
   <ul>
     <li
@@ -27,9 +22,24 @@
         <label for="ProdName">Product name</label>
         <input type="text" v-model="editProdName"/>
         <label for="prodCat">Product Cat</label>
-        <input type="number" min="1" max="4" v-model="editProdCat"/>
+        <select  v-model="editProdCat" id="cars">
+          <option disabled value="">Please select one</option>
+          <option 
+          v-for="prodCat in Product_Cat" 
+          :key="prodCat"
+          :id="prodCat.prod_cat_id"
+          :value="prodCat.prod_cat_id">{{ prodCat.prod_cat_name }}</option>
+        </select>
         <label for="prodDesc">Product Desc</label>
         <input type="text" v-model="editProdDesc"/>
+        
+        
+        <!-- <label for="ProdName">Product name</label>
+        <input type="text" v-model="editProdName"/>
+        <label for="prodCat">Product Cat</label>
+        <input type="number" min="1" max="4" v-model="editProdCat"/>
+        <label for="prodDesc">Product Desc</label>
+        <input type="text" v-model="editProdDesc"/> -->
 
         <button type="submit" @click="saveProduct(product)">save</button>
       </div>
@@ -53,6 +63,7 @@ const { session } = toRefs(props);
 const loading = ref(true);
 const addProd = ref(false);
 const Products = ref([]);
+const Product_Cat = ref([]);
 let prodName = ref("");
 let prodCat = ref("");
 let prodDesc = ref("");
@@ -63,6 +74,7 @@ let editProdDesc = ref("");
 
 onMounted(() => {
   getAllProducts();
+  getAllProdCat();
 });
 
 
@@ -77,10 +89,18 @@ async function getAllProducts() {
   }
   if (data) {
     Products.value = data;
+  }
+}
+async function getAllProdCat() {
+  //get all current products
+  let { data, error } = await supabase.from("Product_Cat").select();
 
-    // editProdName = product.prod_name
-    // editProdCat = product.prod_cat_id
-    // editProdDesc = product.prod_desc
+  if (error) {
+    alert("Failed fetch");
+    console.log(error);
+  }
+  if (data) {
+    Product_Cat.value = data;
   }
 }
 
