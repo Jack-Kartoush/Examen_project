@@ -18,7 +18,8 @@
       <li><a href="#Soep" class="menu-btn">Soep</a></li>
       <li><a href="#Drankjes" class="menu-btn">Drankjes</a></li>
     </ul>
-    <button type="submit" class="login-btn" v-if="!isLoginScreen" @click="isLoginScreen = true">Login</button>
+    <button type="submit" class="login-btn" v-if="!isLoginScreen" @click="isLoginScreen = !isLoginScreen">Login</button>
+    <button type="submit" class="login-btn" v-else @click="isLoginScreen = !isLoginScreen">Uitloggen</button>
   </nav>
 </template>
 
