@@ -11,7 +11,7 @@
 
     <Navbar/>
 </header>
-  <Auth v-if="!LoginScreen"/>
+  <Auth v-if="!isLoginScreen"/><!-- Dit moet gekoppeld worden aan de navbar -->
   <BroodSection/>
 </template>
 <script setup>

@@ -18,11 +18,12 @@
       <li><a href="#Soep" class="menu-btn">Soep</a></li>
       <li><a href="#Drankjes" class="menu-btn">Drankjes</a></li>
     </ul>
-    <button type="submit" class="login-btn">Login</button>
+    <button type="submit" class="login-btn" v-if="!isLoginScreen" @click="isLoginScreen = true">Login</button>
   </nav>
 </template>
 
 <script setup>
 import { ref } from "vue";
 const isActive = ref(false);
+const isLoginScreen = ref(false);
 </script>
