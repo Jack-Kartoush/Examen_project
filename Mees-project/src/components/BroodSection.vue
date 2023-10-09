@@ -61,4 +61,35 @@
 import { onMounted, ref, toRef } from 'vue'
 import { supabase } from '../supabase'
 import Slideshow from "./Slideshow.vue";
+
+onMounted(() => {
+  getAllProducts();
+  getAllProductCat();
+});
+
+async function getAllProducts() {
+  //get all current products
+  let { data, error } = await supabase.from("Products").select();
+
+  if (error) {
+    alert("Failed fetch");
+    console.log(error);
+  }
+  if (data) {
+    Products.value = data;
+  }
+}
+
+async function getAllProductCat() {
+  //get all current products
+  let { data, error } = await supabase.from("Product_Cat").select();
+
+  if (error) {
+    alert("Failed fetch");
+    console.log(error);
+  }
+  if (data) {
+    Product_Cat.value = data;
+  }
+}
 </script>
