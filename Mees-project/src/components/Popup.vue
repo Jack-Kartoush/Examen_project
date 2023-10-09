@@ -57,6 +57,10 @@
           <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
             <label for="name">Product name</label>
             <input type="text" id="name" v-model="prodName" />
+            <label for="name">Product cat</label>
+            <input type="text" id="name" v-model="prodCat" />
+            <label for="name">Product desc</label>
+            <input type="text" id="name" v-model="prodDesc" />
             <button type="submit" @click="createProduct()">add</button>
           </p>
         </div>

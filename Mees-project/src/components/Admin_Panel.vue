@@ -20,10 +20,23 @@
       :id="product.prod_id"
     >
      <p> {{ product.prod_name }} </p>
+     <p> {{ product.prod_cat_id }} </p>
+     <p> {{ product.prod_desc }} </p>
       <button v-if="!product.index" @click="product.index = !product.index">Bewerken</button>
       <div class="edit-form" v-else>
         <label for="ProdName">Product name</label>
+        <input type="text" :value="product.prod_name"/>
+        <label for="prodCat">Product Cat</label>
+        <input type="number" min="1" max="4" :value="product.prod_cat_id"/>
+        <label for="prodDesc">Product Desc</label>
+        <input type="text" :value="product.prod_desc"/>
+        
+        <!-- <label for="ProdName">Product name</label>
         <input type="text" v-model="editProdName"/>
+        <label for="prodCat">Product Cat</label>
+        <input type="number" min="1" max="4" v-model="editProdCat"/>
+        <label for="prodDesc">Product Desc</label>
+        <input type="text" v-model="editProdDesc"/> -->
 
         <button type="submit" @click="saveProduct(product)">save</button>
       </div>
@@ -47,12 +60,19 @@ const { session } = toRefs(props);
 const loading = ref(true);
 const addProd = ref(false);
 const Products = ref([]);
-const prodName = ref("");
-const editProdName = ref("");
+let prodName = ref("");
+let prodCat = ref("");
+let prodDesc = ref("");
+let editProdName = ref("");
+let editProdCat = ref("");
+let editProdDesc = ref("");
+
 
 onMounted(() => {
   getAllProducts();
 });
+
+
 
 async function getAllProducts() {
   //get all current products
@@ -64,16 +84,24 @@ async function getAllProducts() {
   }
   if (data) {
     Products.value = data;
+
+    // editProdName = product.prod_name
+    // editProdCat = product.prod_cat_id
+    // editProdDesc = product.prod_desc
   }
 }
 
 async function createProduct() {
   const { error } = await supabase.from("Products").insert({
     prod_name: prodName.value,
+    prod_cat_id: prodCat.value,
+    prod_desc: prodDesc.value,
   });
   getAllProducts();
   addProd.value = false;
   prodName.value = null;
+  prodCat.value = null;
+  prodDesc.value = null;
 }
 
 async function saveProduct(product) {
@@ -81,16 +109,23 @@ async function saveProduct(product) {
   // console.log("id ",id.value);
   // console.log("product.editProdName  ", product.prod_name );
   // console.log("editProdName  ", editProdName.value );
-  if (!editProdName.value){
+  if (!editProdName.value && !editProdCat.value){
     return
   } else {
     const { error } = await supabase
     .from("Products")
-    .update({ prod_name: editProdName.value})
+    .update({ 
+      prod_name: editProdName.value,
+      prod_cat_id: editProdCat.value,
+      prod_desc: editProdDesc.value,
+    })
     .eq("prod_id", id.value);
 
     getAllProducts();
     editProdName.value = null
+    editProdCat.value = null
+    editProdDesc.value = null
+    
   }
 }
 
@@ -112,4 +147,5 @@ async function signOut() {
     loading.value = false;
   }
 }
+
 </script>
