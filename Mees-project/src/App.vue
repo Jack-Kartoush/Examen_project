@@ -19,5 +19,6 @@ import Navbar from './components/Navbar.vue'
 import Auth from './components/Auth.vue'
 import BroodSection from './components/BroodSection.vue';
 
-isLoginScreen = ref();
+const loginProps = defineProps(["isLoginScreen"]);
+const { isLoginScreen } = toRefs(loginProps);
 </script>
