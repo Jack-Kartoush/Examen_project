@@ -6,10 +6,9 @@
     :key="prodCat.prod_cat_id"
     :id="[[prodCat.prod_cat_name]]"
   >
-    <div class="title_container" >
-      <h1 class="title">{{ prodCat.prod_cat_name }}</h1>
+  <div class="title_container">
+          <h1 class="title">{{ prodCat.prod_cat_name }}</h1>
     </div>
-
     <div class="prod_container">
       <div
         v-for="product in Products.filter(
@@ -17,6 +16,7 @@
         )"
         class="prod_wraper"
       >
+    
         <img src="../assets/img/broodje.jpg" alt="Nature" class="responsive" />
         <div class="prod_title">
           <span>{{ product.prod_name }}</span>
@@ -26,6 +26,7 @@
           {{ product.prod_desc }}
         </p>
       </div>
+      
     </div>
   </section>
 </template>
