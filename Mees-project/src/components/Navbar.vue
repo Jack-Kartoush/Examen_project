@@ -13,10 +13,7 @@
       ></button>
     </div>
     <ul class="menu" :class="{ active: isActive }">
-      <li><a href="#Broodjes" class="menu-btn">Broodjes</a></li>
-      <li><a href="#Snacks" class="menu-btn">Snacks</a></li>
-      <li><a href="#Soep" class="menu-btn">Soep</a></li>
-      <li><a href="#Drankjes" class="menu-btn">Drankjes</a></li>
+      <li v-for="prod_cats in Product_Cat"><a :href="'#'+ prod_cats.prod_cat_name" class="menu-btn">{{ prod_cats.prod_cat_name }}</a></li>
     </ul>
     <button type="submit" class="login-btn" v-if="!isLoginScreen" @click="isLoginScreen = !isLoginScreen">Login</button>
     <button type="submit" class="login-btn" v-else @click="isLoginScreen = !isLoginScreen">Uitloggen</button>
@@ -25,6 +22,26 @@
 
 <script setup>
 import { onMounted, ref, toRef } from 'vue'
+import { supabase } from '../supabase'
+
+onMounted(() => {
+  getAllProductCat();
+});
+
+const Product_Cat = ref([])
 const isActive = ref(false);
 let isLoginScreen = window.gblIsLoginScreen;
+
+async function getAllProductCat() {
+  //get all current products
+  let { data, error } = await supabase.from("Product_Cat").select();
+
+  if (error) {
+    alert("Failed fetch");
+    console.log(error);
+  }
+  if (data) {
+    Product_Cat.value = data;
+  }
+}
 </script>
