@@ -5,7 +5,6 @@
     class="BroodContainer"
     :key="prodCat.prod_cat_id"
     :id="[[prodCat.prod_cat_name]]"
-    :Product_id ="product.prod_cat_id"
   >
     <div class="title_container">
       <h1  class="title">{{ prodCat.prod_cat_name }}</h1>
@@ -56,8 +55,7 @@ async function getAllProducts() {
 }
 
 async function getAllProductCat(Products) {
-  //get all current products
-  console.log("product", Products.value);
+  //get all current product categories
   let { data, error } = await supabase.from("Product_Cat").select();
 
   if (error) {
