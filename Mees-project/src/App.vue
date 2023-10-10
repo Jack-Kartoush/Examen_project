@@ -14,7 +14,7 @@
     <Navbar />
   </header>
   <Admin_Panel v-if="session" :session="session" />
-  <div v-else class="container" style="padding: 50px 0 100px 0">
+  <div v-else >
     <Auth
       v-if="isLoginScreen"
     /><!-- Dit moet gekoppeld worden aan de navbar -->

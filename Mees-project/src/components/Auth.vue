@@ -11,7 +11,7 @@
                 <input
                 type="submit"
                 class="button block"
-                :value="loading ? 'LLaden' : 'Versturen'"
+                :value="loading ? 'Laden...' : 'Versturen'"
                 :disabled="loading"
                 />
             </div>
