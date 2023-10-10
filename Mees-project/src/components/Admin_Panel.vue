@@ -47,12 +47,6 @@ const loading = ref(true);
 const addProd = ref(false);
 const Products = ref([]);
 const Product_Cat = ref([]);
-let prodName = ref("");
-let prodCat = ref("");
-let prodDesc = ref("");
-let editProdName = ref("");
-let editProdCat = ref("");
-let editProdDesc = ref("");
 
 const id_producten = ref();
 onMounted(() => {
@@ -69,37 +63,6 @@ async function getAllProducts() {
   }
   if (data) {
     Products.value = data;
-  }
-}
-
-async function createProduct() {
-  const { error } = await supabase.from("Products").insert({
-    prod_name: prodName.value,
-    prod_cat_id: prodCat.value,
-    prod_desc: prodDesc.value,
-  });
-  getAllProducts();
-  addProd.value = false;
-  prodName.value = null;
-  prodCat.value = null;
-  prodDesc.value = null;
-}
-
-async function saveProduct(product) {
-  const id = ref(product.prod_id);
-  // console.log("id ",id.value);
-  // console.log("product.editProdName  ", product.prod_name );
-  // console.log("editProdName  ", editProdName.value );
-  if (!editProdName.value) {
-    return;
-  } else {
-    const { error } = await supabase
-      .from("Products")
-      .update({ prod_name: editProdName.value })
-      .eq("prod_id", id.value);
-
-    getAllProducts();
-    editProdName.value = null;
   }
 }
 

@@ -71,7 +71,6 @@
             </select>
             <label for="name">Product desc</label>
             <input type="text" id="name" v-model="prodDesc" />
-            <button type="submit" @click="createProduct()">add</button>
           </p>
         </div>
         <!-- Modal footer -->
@@ -108,8 +107,8 @@ const { id_btn, id_producten } = toRefs(props);
 const isOpen = ref(true);
 const prodName = ref("");
 const prodPrice = ref();
-const Product_Cat = ref([])
 const prodDesc = ref("");
+const Product_Cat = ref([])
 const editProdName = ref("");
 // const product_id =getCurrentInstance().vnode.key;
 // const product_id =id_producten.value
