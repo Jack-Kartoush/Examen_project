@@ -65,9 +65,10 @@ const Product_Cats = ref([]);
 
 onMounted(() => {
   getAllProducts();
+  getAllProductCat()
 });
 
-async function getAllProductCat(Products) {
+async function getAllProductCat() {
   //get all current product categories
   let { data, error } = await supabase.from("Product_Cat").select();
 
