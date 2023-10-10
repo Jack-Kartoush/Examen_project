@@ -6,29 +6,45 @@
     <p>Voeg admins toe</p>
   </form>
   <br />
+
   <Popup :id_btn="(id_btn = 'add')" @getProducts="getAllProducts()" />
-  <ul>
-    <li
-      style="display: flex; justify-content: space-around; padding: 20px"
-      v-for="(product, index) in Products"
-      :key="product"
-    >
-      <p>{{ product.prod_name }}</p>
-      <p>{{ product.prod_price }}</p>
-      <p>{{ product.prod_cat_id }}</p>
-      <p>{{ product.prod_desc }}</p>
 
-      <Popup
-        :id_btn="(id_btn = 'edit')"
-        v-if="!product.index"
-        @getProducts="getAllProducts()"
-        @click="product.index = !product.index"
-        :id_producten="product.prod_id"
-      />
-      <button @click="delProduct(product)">verwijderen</button>
-    </li>
-  </ul>
-
+  <section
+    v-for="prodCat in Product_Cats"
+    class="BroodContainer"
+    :key="prodCat.prod_cat_id"
+    :id="[[prodCat.prod_cat_name]]"
+  >
+    <div class="title_container">
+      <h1 class="title">{{ prodCat.prod_cat_name }}</h1>
+    </div>
+    <div class="prod_container">
+      <div
+        v-for="(product, index) in Products.filter(
+          (product) => product.prod_cat_id === prodCat.prod_cat_id
+        )"
+        :key="product"
+        class="prod_wraper"
+      >
+        <img src="../assets/img/broodje.jpg" alt="Nature" class="responsive" />
+        <div class="prod_title">
+          <span>{{ product.prod_name }}</span>
+          <span>{{ product.prod_price }}</span>
+        </div>
+        <p class="text">
+          {{ product.prod_desc }}
+        </p>
+        <Popup
+          :id_btn="(id_btn = 'edit')"
+          v-if="!product.index"
+          @getProducts="getAllProducts()"
+          @click="product.index = !product.index"
+          :id_producten="product.prod_id"
+        />
+        <button @click="delProduct(product)">verwijderen</button>
+      </div>
+    </div>
+  </section>
   <div>
     <button class="button block" @click="signOut">Sign Out</button>
   </div>
@@ -44,14 +60,25 @@ const { session } = toRefs(props);
 const id_btn = ref("");
 
 const loading = ref(true);
-const addProd = ref(false);
 const Products = ref([]);
-const Product_Cat = ref([]);
+const Product_Cats = ref([]);
 
-const id_producten = ref();
 onMounted(() => {
   getAllProducts();
 });
+
+async function getAllProductCat(Products) {
+  //get all current product categories
+  let { data, error } = await supabase.from("Product_Cat").select();
+
+  if (error) {
+    alert("Failed fetch");
+    console.log(error);
+  }
+  if (data) {
+    Product_Cats.value = data;
+  }
+}
 
 async function getAllProducts() {
   //get all current products
