@@ -5,28 +5,28 @@
   <form action="">
     <p>Voeg admins toe</p>
   </form>
-  <button v-if="!addProd" @click="addProd = true">Voeg een product +</button>
-  <div class="prod-form" v-else>
-    <label for="name">Product name</label>
-    <input type="text" id="name" v-model="prodName" />
-    <!-- <button type="submit" @click="createProduct()">add</button> -->
-  </div>
-  <Popup :products="Products" @getProducts="getAllProducts()"/>
+  <Popup
+    :id_btn="(id_btn = 'add')"
+    @getProducts="getAllProducts()"
+  />
   <ul>
     <li
       style="display: flex; justify-content: space-around; padding: 20px"
       v-for="(product, index) in Products"
       :key="product"
-      :id="product.prod_id"
     >
-     <p> {{ product.prod_name }} </p>
-      <button v-if="!product.index" @click="product.index = !product.index">Bewerken</button>
-      <div class="edit-form" v-else>
-        <label for="ProdName">Product name</label>
-        <input type="text" v-model="editProdName"/>
+      <!-- <p> {{ product.prod_id }} </p> -->
+      <p>{{ product.prod_name }}</p>
+      <p>{{ product.prod_price }}</p>
+      <p>{{ product.prod_desc }}</p>
 
-        <button type="submit" @click="saveProduct(product)">save</button>
-      </div>
+      <Popup
+        :id_btn="(id_btn = 'edit')"
+        v-if="!product.index"
+        @getProducts="getAllProducts()"
+        @click="product.index = !product.index"
+        :id_producten="product.prod_id"
+      />
       <button @click="delProduct(product)">verwijderen</button>
     </li>
   </ul>
@@ -43,6 +43,7 @@ import Popup from "./Popup.vue";
 
 const props = defineProps(["session"]);
 const { session } = toRefs(props);
+const id_btn = ref("");
 
 const loading = ref(true);
 const addProd = ref(false);
@@ -50,6 +51,7 @@ const Products = ref([]);
 const prodName = ref("");
 const editProdName = ref("");
 
+const id_producten = ref();
 onMounted(() => {
   getAllProducts();
 });
@@ -81,23 +83,26 @@ async function saveProduct(product) {
   // console.log("id ",id.value);
   // console.log("product.editProdName  ", product.prod_name );
   // console.log("editProdName  ", editProdName.value );
-  if (!editProdName.value){
-    return
+  if (!editProdName.value) {
+    return;
   } else {
     const { error } = await supabase
-    .from("Products")
-    .update({ prod_name: editProdName.value})
-    .eq("prod_id", id.value);
+      .from("Products")
+      .update({ prod_name: editProdName.value })
+      .eq("prod_id", id.value);
 
     getAllProducts();
-    editProdName.value = null
+    editProdName.value = null;
   }
 }
 
 async function delProduct(product) {
   let id = ref(product.prod_id);
   // console.log(id.value);
-  const { error } = await supabase.from("Products").delete().eq("prod_id", id.value);
+  const { error } = await supabase
+    .from("Products")
+    .delete()
+    .eq("prod_id", id.value);
   getAllProducts();
 }
 
