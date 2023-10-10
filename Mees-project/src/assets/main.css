@@ -238,7 +238,7 @@ h2 {
 
 @media only screen and (max-width: 600px) {
   .prod_wraper {
-    width: 100%;
+    width: 150px;
   }
 }
 .radio {
@@ -290,7 +290,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: -1;
+  z-index: -1npm;
 }
 
 .dots label {
