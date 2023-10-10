@@ -20,7 +20,7 @@
         <img src="../assets/img/broodje.jpg" alt="Nature" class="responsive" />
         <div class="prod_title">
           <span>{{ product.prod_name }}</span>
-          <span>3.99</span>
+          <span>{{ product.prod_price }}</span>
         </div>
         <p class="text">
           {{ product.prod_desc }}
