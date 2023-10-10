@@ -234,9 +234,14 @@ h2 {
   margin-top: 10px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 690px) {
   .prod_wraper {
     width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .title {
+    display: flex;
   }
 }
 .radio {
@@ -346,64 +351,6 @@ h2 {
   height: auto;
 }
 
-.BroodContainer {
-  display: block;
-  padding: 10px;
-}
-
-.title_container {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  color: #ffffff;
-  background-color: #f56e28;
-  border-radius: 10px;
-  margin-bottom: 40px;
-  width: 200px;
-  padding: 10px;
-  text-align: center;
-}
-
-.prod_container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.prod_wraper {
-  display: flex;
-  flex-direction: column;
-  width: 40vmin;
-  font-size: medium;
-  margin: 1.6rem;
-}
-
-.text {
-  font-size: 13px;
-  margin-top: 10px;
-}
-
-.prod_title {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-top: 10px;
-}
-
-@media only screen and (max-width: 690px) {
-  .prod_wraper {
-    width: 100%;
-  }
-}
-@media screen and (max-width: 500px) {
-  .title {
-    display: flex;
-  }
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
