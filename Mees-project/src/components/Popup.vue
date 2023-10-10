@@ -35,6 +35,16 @@
           <form action="" @submit.prevent="createProduct()">
             <label for="name">Product name</label>
             <input type="text" id="name" v-model="prodName" />
+            <label for="name">Product cat</label>
+            <!-- <input type="text" id="name" v-model="prodCat" /> -->
+            <select  v-model="prodCat">
+              <option disabled value="">Please select one</option>
+              <option 
+              v-for="prodCats in Product_Cat" 
+              :key="prodCats"
+              :id="prodCats.prod_cat_id"
+              :value="prodCats.prod_cat_id">{{ prodCats.prod_cat_name }}</option>
+            </select>
             <label for="Prijs">Prijs</label>
             <input type="number" id="Prijs" v-model="prodPrice" />
             <label for="Omschrijving">Omschrijving</label>
@@ -50,7 +60,15 @@
             <input type="text" v-model="editProdName" />
           </form>
             <label for="name">Product cat</label>
-            <input type="text" id="name" v-model="prodCat" />
+            <!-- <input type="text" id="name" v-model="prodCat" /> -->
+            <select  v-model="prodCat">
+              <option disabled value="">Please select one</option>
+              <option 
+              v-for="prodCats in Product_Cat" 
+              :key="prodCats"
+              :id="prodCats.prod_cat_id"
+              :value="prodCats.prod_cat_id">{{ prodCats.prod_cat_name }}</option>
+            </select>
             <label for="name">Product desc</label>
             <input type="text" id="name" v-model="prodDesc" />
             <button type="submit" @click="createProduct()">add</button>
@@ -80,7 +98,7 @@
 </template>
 <script setup>
 import { supabase } from "../supabase";
-import { ref, toRefs, defineProps, defineEmits } from "vue";
+import { ref, toRefs, defineProps, defineEmits,onMounted } from "vue";
 import { getCurrentInstance } from "vue";
 
 
@@ -90,13 +108,17 @@ const { id_btn, id_producten } = toRefs(props);
 const isOpen = ref(true);
 const prodName = ref("");
 const prodPrice = ref();
-
+const Product_Cat = ref([])
 const prodDesc = ref("");
 const editProdName = ref("");
 // const product_id =getCurrentInstance().vnode.key;
 // const product_id =id_producten.value
 // console.log("id_producten", id_producten.value);
 const emit = defineEmits(["Products", "getProducts"]); // call the getAllproduct function 
+
+onMounted(() => {
+  getAllProdCat();
+});
 
 async function createProduct() {
   const { error } = await supabase.from("Products").insert({
@@ -130,5 +152,18 @@ async function saveProduct() {
   emit("getProducts", "Products");
   isOpen.value = true;
   
+}
+
+async function getAllProdCat() {
+  //get all current products
+  let { data, error } = await supabase.from("Product_Cat").select();
+
+  if (error) {
+    alert("Failed fetch");
+    console.log(error);
+  }
+  if (data) {
+    Product_Cat.value = data;
+  }
 }
 </script>

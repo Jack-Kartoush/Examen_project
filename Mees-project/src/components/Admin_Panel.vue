@@ -5,19 +5,14 @@
   <form action="">
     <p>Voeg admins toe</p>
   </form>
-  <br/>
-  <Popup :products="Products" @getProducts="getAllProducts()"/>
-  <Popup
-    :id_btn="(id_btn = 'add')"
-    @getProducts="getAllProducts()"
-  />
+  <br />
+  <Popup :id_btn="(id_btn = 'add')" @getProducts="getAllProducts()" />
   <ul>
     <li
       style="display: flex; justify-content: space-around; padding: 20px"
       v-for="(product, index) in Products"
       :key="product"
     >
-      <!-- <p> {{ product.prod_id }} </p> -->
       <p>{{ product.prod_name }}</p>
       <p>{{ product.prod_price }}</p>
       <p>{{ product.prod_desc }}</p>
@@ -29,37 +24,11 @@
         @click="product.index = !product.index"
         :id_producten="product.prod_id"
       />
-      :id="product.prod_id"
-    >
-     <p> {{ product.prod_name }} </p>
-     <p> {{ product.prod_cat_id }} </p>
-     <p> {{ product.prod_desc }} </p>
-      <button v-if="!product.index" @click="product.index = !product.index">Bewerken</button>
-      <div class="edit-form" v-else>
-        <label for="ProdName">Product name</label>
-        <input type="text" v-model="editProdName"/>
-        <label for="prodCat">Product Cat</label>
-        <select  v-model="editProdCat" id="cars">
-          <option disabled value="">Please select one</option>
-          <option 
-          v-for="prodCat in Product_Cat" 
-          :key="prodCat"
-          :id="prodCat.prod_cat_id"
-          :value="prodCat.prod_cat_id">{{ prodCat.prod_cat_name }}</option>
-        </select>
-        <label for="prodDesc">Product Desc</label>
-        <input type="text" v-model="editProdDesc"/>
-        
-        
-        <!-- <label for="ProdName">Product name</label>
-        <input type="text" v-model="editProdName"/>
-        <label for="prodCat">Product Cat</label>
-        <input type="number" min="1" max="4" v-model="editProdCat"/>
-        <label for="prodDesc">Product Desc</label>
-        <input type="text" v-model="editProdDesc"/> -->
 
-        <button type="submit" @click="saveProduct(product)">save</button>
-      </div>
+      >
+      <p>{{ product.prod_name }}</p>
+      <p>{{ product.prod_cat_id }}</p>
+      <p>{{ product.prod_desc }}</p>
       <button @click="delProduct(product)">verwijderen</button>
     </li>
   </ul>
@@ -89,14 +58,10 @@ let editProdName = ref("");
 let editProdCat = ref("");
 let editProdDesc = ref("");
 
-
 const id_producten = ref();
 onMounted(() => {
   getAllProducts();
-  getAllProdCat();
 });
-
-
 
 async function getAllProducts() {
   //get all current products
@@ -108,18 +73,6 @@ async function getAllProducts() {
   }
   if (data) {
     Products.value = data;
-  }
-}
-async function getAllProdCat() {
-  //get all current products
-  let { data, error } = await supabase.from("Product_Cat").select();
-
-  if (error) {
-    alert("Failed fetch");
-    console.log(error);
-  }
-  if (data) {
-    Product_Cat.value = data;
   }
 }
 
@@ -141,26 +94,23 @@ async function saveProduct(product) {
   // console.log("id ",id.value);
   // console.log("product.editProdName  ", product.prod_name );
   // console.log("editProdName  ", editProdName.value );
-  if (!editProdName.value){
-    return
+  if (!editProdName.value) {
+    return;
   } else {
     const { error } = await supabase
-    .from("Products")
-    .update({ prod_name: editProdName.value})
-    .eq("prod_id", id.value);
+      .from("Products")
+      .update({ prod_name: editProdName.value })
+      .eq("prod_id", id.value);
 
     getAllProducts();
-    editProdName.value = null
+    editProdName.value = null;
   }
 }
 
 async function delProduct(product) {
   let id = ref(product.prod_id);
   // console.log(id.value);
-  const { error } = await supabase
-    .from("Products")
-    .delete()
-    .eq("prod_id", id.value);
+  const { error } = await supabase.from("Products").delete().eq("prod_id", id.value);
   getAllProducts();
 }
 
@@ -175,5 +125,4 @@ async function signOut() {
     loading.value = false;
   }
 }
-
 </script>
