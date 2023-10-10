@@ -15,6 +15,7 @@
     >
       <p>{{ product.prod_name }}</p>
       <p>{{ product.prod_price }}</p>
+      <p>{{ product.prod_cat_id }}</p>
       <p>{{ product.prod_desc }}</p>
 
       <Popup
@@ -24,11 +25,6 @@
         @click="product.index = !product.index"
         :id_producten="product.prod_id"
       />
-
-      >
-      <p>{{ product.prod_name }}</p>
-      <p>{{ product.prod_cat_id }}</p>
-      <p>{{ product.prod_desc }}</p>
       <button @click="delProduct(product)">verwijderen</button>
     </li>
   </ul>
