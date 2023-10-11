@@ -2,22 +2,24 @@
     <div class="login-container">
         <form class="row flex-center flex" @submit.prevent="Validator()">
             <div class="col-6 form-widget">
-            <h1 class="header">Login</h1>
-            <p class="description">Sign in via magic link with your email below</p>
-            <div>
-                <input class="inputField" required type="email" placeholder="Uw email" v-model="email" />
-            </div>
-            <div>
+                
+                <h1 class="header">Inloggen</h1>
+                <div class="inputContainer">
+                    <label>Email: </label>
+                    <input class="inputField" required type="email" placeholder="Uw email" v-model="email" />    
+                </div>
+                
                 <input
-                type="submit"
-                class="button block"
-                :value="loading ? 'LLaden' : 'Versturen'"
+                    type="submit"
+                class="button"
+                :value="loading ? 'Laden' : 'Versturen'"
                 :disabled="loading"
                 />
-            </div>
+                
             </div>
         </form>
     </div>
+
 </template>
 
 <script setup>
