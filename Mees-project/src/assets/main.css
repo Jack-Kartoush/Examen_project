@@ -196,6 +196,7 @@ h2 {
 .title_container {
   display: flex;
   justify-content: center;
+  z-index: -1;
 }
 
 .title {
@@ -205,6 +206,7 @@ h2 {
   width: 200px;
   padding: 10px;
   text-align: center;
+  z-index: -1;
 }
 
 .prod_container {
@@ -273,6 +275,7 @@ h2 {
   left: 0;
   opacity: 0;
   animation-duration: 1s;
+  z-index: -1;
 }
 
 .slide img {
@@ -293,6 +296,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: -1;
 }
 
 .dots label {
