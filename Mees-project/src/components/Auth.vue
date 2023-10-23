@@ -1,23 +1,31 @@
 <template>
-    <div class="login-container">
-        <form class="row flex-center flex" @submit.prevent="Validator()">
-            <div class="col-6 form-widget">
-            <h1 class="header">Login</h1>
-            <p class="description">Sign in via magic link with your email below</p>
-            <div>
-                <input class="inputField" required type="email" placeholder="Uw email" v-model="email" />
-            </div>
-            <div>
-                <input
-                type="submit"
-                class="button block"
-                :value="loading ? 'Laden...' : 'Versturen'"
-                :disabled="loading"
-                />
-            </div>
-            </div>
-        </form>
-    </div>
+  <div class="login-container">
+    <form @submit.prevent="Validator()">
+      <div class="login_form">
+        <h1 class="login_title">Inloggen</h1>
+
+        <label for="email">Email: </label>
+        <input
+          id="email"
+          class="login_input"
+          required
+          type="email"
+          placeholder="Uw email"
+          v-model="email"
+        />
+        <div class="btn_container">
+          <button
+            type="submit"
+            class="login_btn"
+            :value="loading ? 'Laden' : 'Versturen'"
+            :disabled="loading"
+          >
+            versturen
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script setup>
