@@ -10,6 +10,7 @@
           class="login_input"
           required
           type="email"
+          name="email"
           placeholder="Uw email"
           v-model="email"
         />
